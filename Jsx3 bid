@@ -1,0 +1,14 @@
+// AuctionItem.js (React component for displaying a single auction item)
+import React from 'react';
+
+function AuctionItem({ auction }) {
+  return (
+    <div>
+      <h3>{auction.title}</h3>
+      <p>Current Bid: ${auction.currentBid}</p>
+      <button>Place Bid</button>
+    </div>
+  );
+}
+
+export default AuctionItem;
