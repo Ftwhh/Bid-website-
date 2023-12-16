@@ -1,0 +1,16 @@
+// AuctionList.js (React component for displaying auctions)
+import React from 'react';
+import AuctionItem from './AuctionItem';
+
+function AuctionList({ auctions, setAuctions }) {
+  return (
+    <div>
+      <h2>Auctions</h2>
+      {auctions.map(auction => (
+        <AuctionItem key={auction.id} auction={auction} />
+      ))}
+    </div>
+  );
+}
+
+export default AuctionList;
