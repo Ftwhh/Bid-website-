@@ -1,0 +1,31 @@
+// server.js (Express server)
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const app = express();
+
+app.use(bodyParser.json());
+
+mongoose.connect('mongodb://localhost/bidding_app', { useNewUrlParser: true, useUnifiedTopology: true });
+
+const Auction = mongoose.model('Auction', {
+  title: String,
+  currentBid: Number,
+});
+
+app.get('/api/auctions', async (req, res) => {
+  const auctions = await Auction.find();
+  res.json(auctions);
+});
+
+app.post('/api/auctions', async (req, res) => {
+  const { title, currentBid } = req.body;
+  const newAuction = new Auction({ title, currentBid });
+  await newAuction.save();
+  res.json(newAuction);
+});
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
