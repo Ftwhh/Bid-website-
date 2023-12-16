@@ -1,0 +1,16 @@
+// App.js (React component)
+import React, { useState } from 'react';
+import AuctionList from './AuctionList';
+
+function App() {
+  const [auctions, setAuctions] = useState([]);
+
+  return (
+    <div>
+      <h1>Bidding Website</h1>
+      <AuctionList auctions={auctions} setAuctions={setAuctions} />
+    </div>
+  );
+}
+
+export default App;
